@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+
+my:
+  apiKey: "b68ac791dfeb4c72b0e3c361a198e860"
+  userKey: "2a7ab531-b411-4d4e-b171-7b25748ca6d8"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

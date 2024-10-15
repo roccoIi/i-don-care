@@ -1,0 +1,14 @@
+server:
+  port: 8761 # Eureka 서버 포트
+
+eureka:
+  client:
+    register-with-eureka: false  # Eureka 서버는 자신을 다른 Eureka 서버에 등록하지 않음
+    fetch-registry: false        # 다른 Eureka 서버로부터 정보를 가져오지 않음
+  instance:
+    hostname: localhost         # TODO: 배포시 실제 IP
+
+logging:
+  level:
+    com.netflix.eureka: DEBUG
+    org.springframework.cloud.netflix.eureka: DEBUG

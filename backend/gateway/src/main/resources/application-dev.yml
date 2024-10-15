@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: http://localhost:8081
+          predicates:
+            - Path=/user/**
+          filters:
+            - RewritePath=/user/(?<segment>.*), /${segment}
+        - id: quest
+          uri: http://localhost:8082
+          predicates:
+            - Path=/quest/**
+          filters:
+            - RewritePath=/quest/(?<segment>.*), /${segment}
+        - id: bank
+          uri: http://localhost:8083
+          predicates:
+            - Path=/bank/**
+          filters:
+            - RewritePath=/bank/(?<segment>.*), /${segment}
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    use-root-path: true
+    enabled: true
+    urls:
+      - url: /user/v3/api-docs
+        name: user-service
+      - url: /quest/v3/api-docs
+        name: quest-service
+      - url: /bank/v3/api-docs
+        name: bank-service

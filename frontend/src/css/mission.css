@@ -1,0 +1,36 @@
+.mission-page-container {
+    padding: 16px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .tab-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+  
+  .tab-button.active {
+    background-color: #34d399; /* 초록색 */
+    color: white;
+  }
+  
+  .tab-button.inactive {
+    background-color: #e5e5e5;
+    color: gray;
+  }
+  
+  .mission-card {
+    border: 2px solid #34d399;
+    background-color: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+  
