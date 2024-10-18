@@ -1,6 +1,6 @@
 package com.idoncare.user.global.exception;
 
-import com.idoncare.user.global.common.ErrorCode;
+import com.idoncare.user.global.common.exception.ErrorCode;
 
 import lombok.Getter;
 

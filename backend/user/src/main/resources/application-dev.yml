@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:mysql://idoncare-mysql:3306/idoncare?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    username: ssafy
+    password: ssafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+sms:
+  api:
+    key: ${SMS_API_KEY}
+    secret: ${SMS_API_SECRET}
+  sender: ${SMS_SENDER}

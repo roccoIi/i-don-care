@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:mysql://localhost:3306/idoncare?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    username: ssafy
+    password: ssafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+logging:
+  level:
+    org.hibernate.SQL: off  # SQL 쿼리 출력
+    org.hibernate.type.descriptor.sql.BasicBinder: off  # SQL 바인딩된 파라미터 값 출력
+sms:
+  api:
+    key: NCSU8WF31QGQKX3X
+    secret: NUTJAWIYZKBI3Q6VXUMDZFWN8DI9OLCE
+  sender: 01059363877
+eureka:
+  client:
+    enabled: false

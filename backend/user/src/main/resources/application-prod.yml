@@ -1,0 +1,61 @@
+server:
+  port: ${USER_PORT}
+
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:mysql://idoncare-user-mysql:3306/idoncare?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    username: ssafy
+    password: ssafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: false
+        format_sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  kafka:
+    bootstrap-servers: j11a603.p.ssafy.io:9093
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+    consumer:
+      group-id: user-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+            type:
+              mapping:
+                mission: com.idoncare.user.dto.RelationMissionDto
+                quiz: com.idoncare.user.dto.RelationQuizDto
+                savings: com.idoncare.user.dto.RelationSavingsDto
+
+sms:
+  api:
+    key: ${SMS_API_KEY}
+    secret: ${SMS_API_SECRET}
+  sender: ${SMS_SENDER}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://j11a603.p.ssafy.io:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: false
+    hostname: j11a603.p.ssafy.io
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${USER_PORT}
+    non-secure-port: ${USER_PORT}
